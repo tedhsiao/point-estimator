@@ -4,6 +4,8 @@ import Button from './Button';
 import Welcome from './Welcome';
 import QuestionForm from '../Components/QuestionForm/QuestionForm';
 import '@blueprintjs/core/dist/blueprint.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
 
 storiesOf('Welcome', module)
   .add('to Storybook', () => (
