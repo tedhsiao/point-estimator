@@ -1,3 +1,13 @@
 .question-form {
   padding-top: 20px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.question-form input {
+  border: none;
+}
+
+.question-form .choice {
+  border-radius: 6px;
 }
