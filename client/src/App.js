@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import './App.css';
-import '@blueprintjs/core/dist/blueprint.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
-import { Menu, MenuItem, Button } from '@blueprintjs/core';
-import QuestionForm from './Components/QuestionForm/QuestionForm'
+import React, { Component } from "react";
+import "./App.css";
+import "@blueprintjs/core/dist/blueprint.css";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/css/bootstrap-theme.css";
+import { Menu, MenuItem, Button } from "@blueprintjs/core";
+import QuestionForm from "./Components/QuestionForm/QuestionForm";
 
 class App extends Component {
   render() {
