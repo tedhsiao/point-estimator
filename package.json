@@ -1,5 +1,16 @@
 {
   "dependencies": {
     "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "lint-staged": "^3.4.0",
+    "pre-commit": "^1.2.2"
+  },
+  "lint-staged": {
+    "*.js": ["prettier --write", "git add"]
+  },
+  "pre-commit": "lint-staged",
+  "scripts": {
+    "lint-staged": "lint-staged"
   }
 }
