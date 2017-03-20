@@ -23,7 +23,7 @@ storiesOf("Button", module)
 
 storiesOf("QuestionForm", module).add("default", () => <QuestionForm />);
 
-storiesOf("Nav", module).add("default", () => <Nav />);
+storiesOf("Nav", module).add("default", () => <Nav tabs={["Home", "Room"]} />);
 
 storiesOf("NavTab", module).add("default", () => (
   <NavTab

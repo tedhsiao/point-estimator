@@ -5,11 +5,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap-theme.css";
 import { Menu, MenuItem, Button } from "@blueprintjs/core";
 import QuestionForm from "./Components/QuestionForm/QuestionForm";
+import Nav from "./Components/Nav/Nav";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+        <Nav tabs={["Home", "Room"]} />
         <Menu className="default pt-dark">
           <MenuItem text="Vote" />
           <MenuItem text="My Account" />
