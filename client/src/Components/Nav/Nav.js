@@ -3,7 +3,8 @@ import NavTab from "../NavTab/NavTab";
 import "./Nav.css";
 
 const propTypes = {
-  tabClicked: PropTypes.string
+  tabClicked: PropTypes.string,
+  tabs: PropTypes.array
 };
 
 class NavStates {
@@ -31,13 +32,13 @@ class Nav extends React.Component {
   }
 
   _renderNavTabs() {
-    let tabs = ["Home", "Room"];
-    return tabs.map(tab => {
+    console.log(this.state.tabs);
+    return this.props.tabs.map(tab => {
       return (
         <NavTab
           buttonText={tab}
           buttonIcon="pt-icon-home"
-          active={this.state.activeTab == tab}
+          active={this.state.activeTab === tab}
           onClick={this._handleTabClick.bind(this, tab)}
         />
       );
