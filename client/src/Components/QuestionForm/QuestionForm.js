@@ -3,6 +3,29 @@ import './QuestionForm.css';
 import { Menu, MenuItem, Button } from '@blueprintjs/core';
 import { map } from 'lodash';
 
+class QuestionFormStates {
+  static renderChoices(state, props) {
+    return {
+      showChoices: true
+    }
+  }
+  static initialState(state, props) {
+    return {
+      showChoices: false,
+      confirmed: false,
+      questionString: "",
+    }
+  }
+  static confirm(questionString) {
+    return (state, props) => {
+      return {
+        confirmed: true,
+        questionString,
+      }
+    }
+  }
+}
+
 class QuestionForm extends React.Component {
   points = [1, 2, 3, 5];
   _input;
@@ -101,29 +124,6 @@ class QuestionForm extends React.Component {
         {this._renderChoices()}
       </div>
     );
-  }
-}
-
-class QuestionFormStates {
-  static renderChoices(state, props) {
-    return {
-      showChoices: true
-    }
-  }
-  static initialState(state, props) {
-    return {
-      showChoices: false,
-      confirmed: false,
-      questionString: "",
-    }
-  }
-  static confirm(questionString) {
-    return (state, props) => {
-      return {
-        confirmed: true,
-        questionString,
-      }
-    }
   }
 }
 
