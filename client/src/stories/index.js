@@ -30,7 +30,7 @@ storiesOf("NavTab", module).add("default", () => (
   <NavTab
     buttonText="Home"
     buttonIcon="pt-icon-home"
-    active=""
+    active={false}
     onClick={() => {
       console.log("Clicked");
     }}
