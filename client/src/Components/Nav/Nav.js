@@ -20,7 +20,7 @@ class NavStates {
   }
 }
 
-class Nav extends React.Component {
+class Nav extends Component {
   constructor() {
     super();
     this.state = NavStates.initialState();

@@ -8,10 +8,6 @@ const propTypes = {
 };
 
 class NavTab extends Component {
-  constructor() {
-    super();
-  }
-
   _activeClass() {
     return this.props.active ? "active-color" : "";
   }
