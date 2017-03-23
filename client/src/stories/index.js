@@ -5,6 +5,7 @@ import Welcome from "./Welcome";
 import QuestionForm from "../Components/QuestionForm/QuestionForm";
 import Nav from "../Components/Nav/Nav";
 import NavTab from "../Components/NavTab/NavTab";
+import ToasterDemo from "../Components/Toaster/ToasterDemo";
 import "@blueprintjs/core/dist/blueprint.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap-theme.css";
@@ -29,9 +30,11 @@ storiesOf("NavTab", module).add("default", () => (
   <NavTab
     buttonText="Home"
     buttonIcon="pt-icon-home"
-    active=""
+    active={false}
     onClick={() => {
       console.log("Clicked");
     }}
   />
 ));
+
+storiesOf("ToasterDemo", module).add("default", () => <ToasterDemo />);

@@ -11,6 +11,9 @@
   },
   "pre-commit": "lint-staged",
   "scripts": {
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "install-client": "cd client && npm install",
+    "build-storybook": "cd client && npm run build-storybook",
+    "build-client": "cd client && npm run build"
   }
 }
