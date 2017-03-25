@@ -6,6 +6,7 @@ import QuestionForm from "../Components/QuestionForm/QuestionForm";
 import Nav from "../Components/Nav/Nav";
 import NavTab from "../Components/NavTab/NavTab";
 import ToasterDemo from "../Components/Toaster/ToasterDemo";
+import Signin from "../Components/Signin/Signin";
 import "@blueprintjs/core/dist/blueprint.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap-theme.css";
@@ -38,3 +39,7 @@ storiesOf("NavTab", module).add("default", () => (
 ));
 
 storiesOf("ToasterDemo", module).add("default", () => <ToasterDemo />);
+
+storiesOf("Signin", module).add("default", () => (
+  <Signin submitFunc={action("submitted")} />
+));
