@@ -9,6 +9,12 @@ import { Link } from "react-router-dom";
 import Radium from "radium";
 import MenuWrap from "./Components/MenuWrap/MenuWrap";
 import BurgerMenu from "react-burger-menu";
+import io from "socket.io-client";
+let socket = io();
+
+socket.on("connect", socket => {
+  console.log("Connected!");
+});
 
 const Menu = BurgerMenu["slide"];
 const RadiumLink = Radium(Link);

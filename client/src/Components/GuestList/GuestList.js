@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, MenuDivider, MenuItem, Classes } from "@blueprintjs/core";
+import { Menu, MenuDivider, MenuItem } from "@blueprintjs/core";
 
 class GuestList extends React.Component {
   _renderGuests() {
