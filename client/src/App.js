@@ -10,6 +10,14 @@ import BurgerMenu from "react-burger-menu";
 import CreateRoom from "./Containers/CreateRoom/CreateRoom";
 import Lobby from "./Containers/Lobby/Lobby";
 import Room from "./Containers/Room/Room";
+import io from "socket.io-client";
+
+let socket = io();
+socket.on("connect", socket => {
+  console.log("Connected!");
+});
+
+
 
 const Menu = BurgerMenu["slide"];
 const RadiumLink = Radium(Link);
