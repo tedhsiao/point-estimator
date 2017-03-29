@@ -8,9 +8,6 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import "./index.css";
 import reducer from "./rootReducer";
-import socketEvents from "./SocketHandler";
-
-socketEvents();
 
 const history = createHistory();
 
