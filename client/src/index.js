@@ -1,6 +1,7 @@
 import React from "react";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 import createHistory from "history/createBrowserHistory";
 import { Route } from "react-router-dom";
 import { ConnectedRouter, routerMiddleware } from "react-router-redux";
@@ -13,7 +14,7 @@ const history = createHistory();
 
 const middleware = routerMiddleware(history);
 
-const store = createStore(reducer, applyMiddleware(middleware));
+const store = createStore(reducer, applyMiddleware(middleware, thunk));
 
 ReactDOM.render(
   <Provider store={store}>

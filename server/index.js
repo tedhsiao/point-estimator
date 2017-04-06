@@ -19,6 +19,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "./../client/build")));
 
+//routers
+const userRouter = express.Router();
+app.use("/api/user", userRouter);
+require("./user/userRoute")(userRouter);
+
 // test api
 app.get("/", (req, res) => {
   res.send("Hello World");
