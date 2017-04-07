@@ -1,10 +1,12 @@
 const db = require("../db.js");
 
 exports.createUser = (name, email, googleId) => {
-  return db.User.create({ name, email, googleId }).then(user => {
-    console.log(user);
-    return user;
-  });
+  return db.User
+    .findOrCreate({ where: { googleId, email, name } })
+    .then(user => {
+      console.log(user);
+      return user;
+    });
 };
 
 exports.getAllUsers = () => {

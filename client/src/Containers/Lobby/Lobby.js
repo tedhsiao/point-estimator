@@ -29,7 +29,7 @@ class Lobby extends Component {
     this.props.onGoogleLoginSuccess(payload);
   }
   failResGoogle(res) {
-    console.log(res.profileObj);
+    console.log(res);
   }
   render() {
     return (
