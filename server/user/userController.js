@@ -5,10 +5,6 @@ module.exports.createUser = (req, res) => {
     .createUser(req.body.name, req.body.email, req.body.googleId)
     .then(user => {
       console.log(user);
-      console.log(user[0].dataValues);
-      let { id, name, email, googleId } = user[0].dataValues;
-      let userInfo = { id, name, email, googleId };
-      res.send(userInfo);
     });
 };
 

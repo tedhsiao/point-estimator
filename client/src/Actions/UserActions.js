@@ -1,31 +1,24 @@
 import axios from "axios";
 
-export const SIGN_UP_REQ = "SIGN_UP_REQ";
-export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
-export const SIGN_UP_ERR = "SIGN_UP_ERR";
-export const LOG_OUT = "LOG_OUT";
+const REQ_DATA = "REQ_DATA";
+const RECV_DATA = "RECV_DATA";
+const RECV_ERROR = "RECV_ERROR";
 
 function requestData() {
-  return { type: SIGN_UP_REQ };
+  return { type: REQ_DATA };
 }
 
 function receiveData(json) {
   return {
-    type: SIGN_UP_SUCCESS,
+    type: RECV_DATA,
     data: json
   };
 }
 
 function receiveError(json) {
   return {
-    type: SIGN_UP_SUCCESS,
+    type: RECV_ERROR,
     data: json
-  };
-}
-
-export function logout() {
-  return {
-    type: LOG_OUT
   };
 }
 
