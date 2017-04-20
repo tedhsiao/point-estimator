@@ -68,7 +68,7 @@ class App extends Component {
   }
   getItem() {
     let routes;
-    if (this.props.user) {
+    if (!this.props.user) {
       routes = [
         { Home: "/" },
         { Room: "/room" },
