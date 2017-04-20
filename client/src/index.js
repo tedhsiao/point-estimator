@@ -1,8 +1,9 @@
 import React from "react";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 import createHistory from "history/createBrowserHistory";
-import { Route } from "react-router";
+import { Route } from "react-router-dom";
 import { ConnectedRouter, routerMiddleware } from "react-router-redux";
 import ReactDOM from "react-dom";
 import App from "./App";
@@ -13,15 +14,13 @@ const history = createHistory();
 
 const middleware = routerMiddleware(history);
 
-const store = createStore(reducer, applyMiddleware(middleware));
+const store = createStore(reducer, applyMiddleware(middleware, thunk));
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <div>
         <Route exact path="/" component={App} />
-        <Route path="/room" component={App} />
-        <Route path="/profile" component={App} />
       </div>
     </ConnectedRouter>
   </Provider>,

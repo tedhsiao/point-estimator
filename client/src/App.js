@@ -1,52 +1,87 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "./App.css";
 import "@blueprintjs/core/dist/blueprint.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap-theme.css";
-import { Button } from "@blueprintjs/core";
-import QuestionForm from "./Components/QuestionForm/QuestionForm";
-import BurgerMenu from "react-burger-menu";
-import { Link } from "react-router-dom";
+import { Link, Route, BrowserRouter as Router } from "react-router-dom";
 import Radium from "radium";
+import MenuWrap from "./Components/MenuWrap/MenuWrap";
+import BurgerMenu from "react-burger-menu";
+import CreateRoom from "./Containers/CreateRoom/CreateRoom";
+import Lobby from "./Containers/Lobby/Lobby";
+import Room from "./Containers/Room/Room";
+import socketEvents from "./SocketHandler";
+import GoogleLogin from "react-google-login";
+import { fetchData, logout } from "./Actions/UserActions";
+
+socketEvents();
 
 const Menu = BurgerMenu["slide"];
+const RadiumLink = Radium(Link);
 
-let MenuWrap = React.createClass({
-  getInitialState() {
-    return { hidden: false };
-  },
-
-  show() {
-    this.setState({ hidden: false });
-  },
-
-  render() {
-    let style;
-
-    if (this.state.hidden) {
-      style = { display: "none" };
+let mapDispatchToProps = dispatch => {
+  return {
+    onGoogleLoginSuccess: payload => {
+      dispatch(fetchData("/api/user/create", payload));
+    },
+    handleLogout: () => {
+      dispatch(logout());
     }
+  };
+};
 
-    return (
-      <div style={style} className={this.props.side}>
-        {this.props.children}
-      </div>
-    );
-  }
-});
-
-let RadiumLink = Radium(Link);
+let mapStateToProps = state => {
+  return {
+    user: state.user.user
+  };
+};
 
 class App extends Component {
-  changeMenu(menu) {
-    this.setState({ currentMenu: menu });
+  successResGoogle(res) {
+    console.log(res.profileObj);
+    let { name, email, googleId } = res.profileObj;
+    let payload = {
+      name,
+      email,
+      googleId
+    };
+    this.props.onGoogleLoginSuccess(payload);
+  }
+  failResGoogle(res) {
+    console.log(res);
+  }
+  logoutButton() {
+    if (!this.props.user) return;
+    return <button onClick={this.props.handleLogout}>Log Out</button>;
+  }
+  googleLoginButton() {
+    if (this.props.user) return;
+    return (
+      <GoogleLogin
+        clientId="756264480073-sre4v4ht6n1spc645h8p5dsji0efrkcb.apps.googleusercontent.com"
+        buttonText="Log In with Google"
+        onSuccess={this.successResGoogle.bind(this)}
+        onFailure={this.failResGoogle}
+      />
+    );
   }
   getItem() {
-    let items = [
-      <RadiumLink to="/">Home</RadiumLink>,
-      <RadiumLink to="/room">Room</RadiumLink>,
-      <RadiumLink to="/profile">Profile</RadiumLink>
-    ];
+    let routes;
+    if (this.props.user) {
+      routes = [
+        { Home: "/" },
+        { Room: "/room" },
+        { CreateRoom: "/create-room" }
+      ];
+    } else {
+      routes = [{ Home: "/" }, { Room: "/room" }];
+    }
+    let items = routes.map((route, i) => {
+      return Object.keys(route).map(key => {
+        return <RadiumLink key={i} to={route[key]}>{key}</RadiumLink>;
+      })[0];
+    });
     return items;
   }
   getMenu() {
@@ -56,6 +91,8 @@ class App extends Component {
       <MenuWrap wait={20}>
         <Menu pageWrapId={"page-wrap"} outerContainerId={"outer-container"}>
           {items}
+          {this.googleLoginButton()}
+          {this.logoutButton()}
         </Menu>
       </MenuWrap>
     );
@@ -63,18 +100,16 @@ class App extends Component {
 
   render() {
     return (
-      <div id="outer-container" style={{ height: "100%" }}>
-        {this.getMenu()}
-        <main id="page-wrap">
-          <div className="App">
-            {this.getMenu()}
-            <Button text="Create a Question" className="pt-intent-primary" />
-            <QuestionForm />
-          </div>
-        </main>
-      </div>
+      <Router>
+        <div id="outer-container" style={{ height: "100%" }}>
+          {this.getMenu()}
+          <Route exact path="/" component={Lobby} />
+          <Route path="/room" component={Room} />
+          <Route path="/create-room" component={CreateRoom} />
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
