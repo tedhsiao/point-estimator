@@ -26,7 +26,9 @@ storiesOf("Button", module)
     <Button onClick={action("clicked")}>😀 😎 👍 💯</Button>
   ));
 
-storiesOf("QuestionForm", module).add("default", () => <QuestionForm />);
+storiesOf("QuestionForm", module).add("default", () => (
+  <QuestionForm submitFormFunc={inputs => {}} />
+));
 
 storiesOf("Nav", module).add("default", () => <Nav tabs={["Home", "Room"]} />);
 

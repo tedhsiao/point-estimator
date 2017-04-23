@@ -1,19 +1,30 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import QuestionForm from "../../Components/QuestionForm/QuestionForm";
-import { Button } from "@blueprintjs/core";
 import "../../index.css";
+import { createRoom } from "../../Actions/RoomActions";
+
+let mapDispatchToProps = dispatch => {
+  return {
+    onCreateRoom: payload => {
+      dispatch(createRoom("/api/room", payload));
+    }
+  };
+};
 
 class CreateRoom extends Component {
+  _handleFormSubmit(formInputs) {
+    this.props.onCreateRoom(formInputs);
+  }
   render() {
     return (
       <div>
         <div className="col-md-offset-5 col-md-2 text-center top-offset">
-          <Button text="Create a Question" className="pt-intent-primary" />
-          <QuestionForm />
+          <QuestionForm submitFormFunc={this._handleFormSubmit.bind(this)} />
         </div>
       </div>
     );
   }
 }
 
-export default CreateRoom;
+export default connect(null, mapDispatchToProps)(CreateRoom);
