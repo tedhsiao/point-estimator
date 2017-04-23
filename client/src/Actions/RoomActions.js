@@ -23,10 +23,17 @@ function createError(json) {
 }
 
 export function createRoom(url, payload) {
+  let requestPayload = {
+    question: payload.questionString,
+    choice1: payload.choice_1,
+    choice2: payload.choice_2,
+    choice3: payload.choice_3,
+    choice4: payload.choice_4
+  };
   return function(dispatch) {
     dispatch(requestCreateRoom());
     return axios
-      .post("createRoom", payload.formInput)
+      .post(url, requestPayload)
       .then(function(response) {
         dispatch(createSuccess(response.data));
       })

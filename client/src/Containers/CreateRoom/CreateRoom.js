@@ -14,6 +14,7 @@ let mapDispatchToProps = dispatch => {
 
 class CreateRoom extends Component {
   _handleFormSubmit(formInputs) {
+    console.log(formInputs);
     this.props.onCreateRoom(formInputs);
   }
   render() {
