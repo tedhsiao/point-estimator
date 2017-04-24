@@ -15,8 +15,6 @@ module.exports.createRoom = (req, res) => {
 };
 
 module.exports.getRoom = (req, res) => {
-  console.log("HI");
-  console.log(req.params);
   roomModel.getRoom(req.params.id).then(response => {
     res.send(response);
   });
