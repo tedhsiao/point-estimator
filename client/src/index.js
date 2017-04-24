@@ -10,7 +10,7 @@ import App from "./App";
 import "./index.css";
 import reducer from "./rootReducer";
 
-const history = createHistory();
+export let history = createHistory();
 
 const middleware = routerMiddleware(history);
 
@@ -19,9 +19,7 @@ const store = createStore(reducer, applyMiddleware(middleware, thunk));
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
-        <Route exact path="/" component={App} />
-      </div>
+      <Route path="/" component={App} />
     </ConnectedRouter>
   </Provider>,
   document.getElementById("root")

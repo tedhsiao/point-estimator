@@ -23,10 +23,12 @@ app.use(express.static(path.join(__dirname, "./../client/build")));
 const userRouter = express.Router();
 app.use("/api/user", userRouter);
 require("./user/userRoute")(userRouter);
+const roomRouter = express.Router();
+app.use("/api/room", roomRouter);
+require("./room/roomRoute")(roomRouter);
 
-// test api
-app.get("/", (req, res) => {
-  res.send("Hello World");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./../client/build/index.html"));
 });
 
 server.listen(3000, err => {

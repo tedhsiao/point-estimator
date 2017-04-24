@@ -3,10 +3,16 @@ import { connect } from "react-redux";
 import QuestionForm from "../../Components/QuestionForm/QuestionForm";
 import "../../index.css";
 import { createRoom } from "../../Actions/RoomActions";
+import { history } from "../../index";
+
+let mapStateToProps = state => {
+  return {};
+};
 
 let mapDispatchToProps = dispatch => {
   return {
     onCreateRoom: payload => {
+      history.push("/room");
       dispatch(createRoom("/api/room", payload));
     }
   };
@@ -27,4 +33,4 @@ class CreateRoom extends Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(CreateRoom);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateRoom);

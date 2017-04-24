@@ -30,4 +30,29 @@ exports.User = sequelize.define(
   }
 );
 
+exports.Room = sequelize.define(
+  "room",
+  {
+    question: {
+      type: Sequelize.STRING
+    },
+    choice1: {
+      type: Sequelize.STRING
+    },
+    choice2: {
+      type: Sequelize.STRING
+    },
+    choice3: {
+      type: Sequelize.STRING
+    },
+    choice4: {
+      type: Sequelize.STRING
+    }
+  },
+  {
+    freezeTableName: true
+  }
+);
+
 exports.User.sync();
+exports.Room.sync();
