@@ -9,10 +9,6 @@ let mapStateToProps = state => {
   return {};
 };
 
-let mapStateToProps = state => {
-  return {};
-};
-
 let mapDispatchToProps = dispatch => {
   return {
     onCreateRoom: payload => {
