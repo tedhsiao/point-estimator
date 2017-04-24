@@ -4,7 +4,7 @@ import "./App.css";
 import "@blueprintjs/core/dist/blueprint.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap-theme.css";
-import { Link, Route, BrowserRouter as Router } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import Radium from "radium";
 import MenuWrap from "./Components/MenuWrap/MenuWrap";
 import BurgerMenu from "react-burger-menu";
@@ -70,7 +70,7 @@ class App extends Component {
     let routes;
     if (!this.props.user) {
       routes = [
-        { Home: "/" },
+        { Home: "/lobby" },
         { Room: "/room" },
         { CreateRoom: "/create-room" }
       ];
@@ -100,14 +100,12 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div id="outer-container" style={{ height: "100%" }}>
-          {this.getMenu()}
-          <Route exact path="/" component={Lobby} />
-          <Route path="/room" component={Room} />
-          <Route path="/create-room" component={CreateRoom} />
-        </div>
-      </Router>
+      <div id="outer-container" style={{ height: "100%" }}>
+        {this.getMenu()}
+        <Route path="/lobby" component={Lobby} />
+        <Route path="/room" component={Room} />
+        <Route path="/create-room" component={CreateRoom} />
+      </div>
     );
   }
 }
