@@ -9,9 +9,15 @@ module.exports.createRoom = (req, res) => {
       req.body.choice3,
       req.body.choice4
     )
-    .then(room => {
-      let { question, choice1, choice2, choice3, choice4 } = room[0].dataValues;
-      let roomInfo = { question, choice1, choice2, choice3, choice4 };
-      res.send(roomInfo);
+    .then(response => {
+      res.send(response);
     });
+};
+
+module.exports.getRoom = (req, res) => {
+  console.log("HI");
+  console.log(req.params);
+  roomModel.getRoom(req.params.id).then(response => {
+    res.send(response);
+  });
 };

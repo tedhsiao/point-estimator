@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import QuestionForm from "../../Components/QuestionForm/QuestionForm";
 import "../../index.css";
 import { createRoom } from "../../Actions/RoomActions";
-import { history } from "../../index";
 
 let mapStateToProps = state => {
   return {};
@@ -12,7 +11,6 @@ let mapStateToProps = state => {
 let mapDispatchToProps = dispatch => {
   return {
     onCreateRoom: payload => {
-      history.push("/room");
       dispatch(createRoom("/api/room", payload));
     }
   };
